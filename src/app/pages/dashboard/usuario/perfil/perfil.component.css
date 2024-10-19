@@ -1,0 +1,181 @@
+.sizebodyDashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.logo {
+    height: 20px;
+    width: 20px;
+    padding: 0px;
+    margin: 0px;
+}
+
+@media (max-width: 360px) {
+    .bg-dark {
+        flex: 0 0 20%;
+        width: 100%;
+        max-height: 30vh !important;
+        /* height: 5vh; */
+    }
+
+    .infoStream {
+        flex: 0 0 10%;
+    }
+
+    .chat-panel {
+        display: none;
+    }
+
+    .mobile-chat {
+        display: flex;
+        flex-direction: column;
+        height: 40vh;
+        /* Mantener esto para controlar la altura del chat */
+        overflow: auto;
+        /* Evitar que el contenido sobresalga */
+    }
+
+    .mobile-chat .flex-grow-1 {
+        overflow-y: auto;
+        /* Permitir desplazamiento si el contenido es demasiado grande */
+        flex-grow: 1;
+        /* Permitir que este contenedor crezca */
+    }
+
+    /* Asegurarse de que los elementos internos no desborden */
+    .mobile-chat .p-3 {
+        margin: 0;
+        /* Eliminar márgenes */
+        padding: 0;
+        /* Ajustar si es necesario */
+    }
+
+    .mobile-chat input,
+    .mobile-chat button {
+        max-height: 50px;
+        /* Asegurarse de que no excedan el tamaño */
+        margin: 0;
+        /* Eliminar márgenes */
+    }
+
+}
+
+/* Ajustes para pantallas grandes (escritorio) */
+@media (min-width: 361px) {
+    .bg-dark {
+        flex: 0 0 80%;
+    }
+
+    .chat-panel {
+        flex: 0 0 20%;
+        display: flex;
+        /* Limitar la altura total del panel de chat */
+    }
+
+    .infoStream {
+        flex: 0 0 10%;
+    }
+
+    .chat-panel .flex-grow-1 {
+        /* max-height: calc(100vh - 100px); */
+        /* Ajusta esto según el tamaño del encabezado y el pie de chat */
+        overflow-y: auto;
+        /* Permitir desplazamiento */
+    }
+
+    .transparent-chat {
+        background-color: #15181f5b;
+        /* Color de fondo semitransparente */
+        transition: background-color 0.3s ease, opacity 0.3s ease;
+        /* opacity: 0.5; */
+        /* Aplicar opacidad al contenido */
+    }
+
+    .chat-panel {
+        /* background-color: rgba(0, 0, 0, 1); */
+        /* Color de fondo original */
+        opacity: 1;
+        /* Opacidad total cuando está enfocado */
+        transition: background-color 0.3s ease, opacity 0.3s ease;
+    }
+
+}
+
+.color-matching {
+    color: green;
+    /* Cambia a tu color deseado */
+}
+
+.color-non-matching {
+    color: red;
+    /* Cambia a tu color deseado */
+}
+
+.emoji-picker {
+    position: absolute;
+    /* Cambiado a absolute para permitir que se posicione sobre otros elementos */
+    bottom: 100%;
+    /* Muestra el menú justo arriba del input */
+    left: 0;
+    /* Alinea a la izquierda del input */
+    background-color: #15181f;
+    /* Color de fondo */
+    border: 1px solid #ccc;
+    /* Borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite que los emojis se distribuyan en varias filas */
+    padding: 5px;
+    /* Espaciado interno */
+    z-index: 1000;
+    /* Asegúrate de que esté por encima de otros elementos */
+    visibility: hidden;
+    /* Inicialmente oculto */
+    opacity: 0;
+    /* Inicialmente transparente */
+    transition: visibility 0s, opacity 0.2s ease;
+    /* Transición suave */
+}
+
+.emoji-picker.show {
+    visibility: visible;
+    /* Muestra el menú */
+    opacity: 1;
+    /* Hace el menú completamente visible */
+}
+
+.emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* Ajusta la cantidad de columnas */
+    gap: 5px;
+    /* Espaciado entre emojis */
+}
+
+.emoji-grid span {
+    cursor: pointer;
+    /* Cambiar el cursor al pasar sobre el emoji */
+    font-size: 24px;
+    /* Tamaño del emoji */
+    transition: transform 0.2s;
+    /* Efecto de transición */
+}
+
+.emoji-grid span:hover {
+    transform: scale(1.2);
+    /* Efecto de aumento al pasar el cursor */
+}
+
+.input-container {
+    position: relative;
+    /* Asegura que el menú de emojis se posicione relativo a este contenedor */
+    display: flex;
+    /* Usa flexbox para alinear los elementos */
+    align-items: center;
+    /* Alinea verticalmente los elementos */
+}

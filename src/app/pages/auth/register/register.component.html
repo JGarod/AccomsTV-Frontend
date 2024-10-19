@@ -1,0 +1,75 @@
+<div class="container-fluid vh-100 d-flex p-0">
+  <div class="form-container mx-auto  w-100">
+    <div class="form-content p-4 rounded shadow h-100">
+      <div class="text-center">
+        <img [src]="'assets/login/logo.png'" alt="Game logo" class="logo mb-3" />
+        <h2 class="title text-white">Registro</h2>
+      </div>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label text-white">Nombre de usuario</label>
+          <input id="nombre" formControlName="nombre" placeholder="Nombre de usuario" class="form-control" />
+          <div
+            *ngIf="registerForm.get('nombre')?.invalid && (registerForm.get('nombre')?.touched || registerForm.get('nombre')?.dirty)">
+            <small class="error text-danger">El nombre de usuario es requerido.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label text-white">Correo electrónico:</label>
+          <input type="email" id="email" formControlName="correo" placeholder="Correo electrónico"
+            class="form-control" />
+          <div
+            *ngIf="registerForm.get('correo')?.invalid && (registerForm.get('correo')?.touched || registerForm.get('correo')?.dirty)">
+            <small class="error text-danger">El correo es requerido.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="contrasena" class="form-label text-white">Contraseña</label>
+          <div class="input-group">
+            <input id="contrasena" formControlName="contrasena" [type]="showcontrasena ? 'text' : 'password'"
+              placeholder="Contraseña" class="form-control" (change)="confirmarClaves()" />
+            <button type="button" (click)="showcontrasena = !showcontrasena" class="btn btn-outline-secondary"
+              id="button-addon2">
+              <i class="fas" [ngClass]="showcontrasena ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <div
+            *ngIf="registerForm.get('contrasena')?.invalid && (registerForm.get('contrasena')?.touched || registerForm.get('contrasena')?.dirty)">
+            <small class="error text-danger">La contraseña es requerida y debe tener al menos 6 caracteres.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="contrasenaDos" class="form-label text-white">Confirmar Contraseña</label>
+          <div class="input-group">
+            <input id="contrasenaDos" formControlName="contrasenaDos" [type]="showcontrasenaDos ? 'text' : 'password'"
+              placeholder="Contraseña" class="form-control" (change)="confirmarClaves()" />
+            <button type="button" (click)="showcontrasenaDos = !showcontrasenaDos" class="btn btn-outline-secondary"
+              id="button-addon2">
+              <i class="fas" [ngClass]="showcontrasenaDos ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <div
+            *ngIf="registerForm.get('contrasenaDos')?.invalid && (registerForm.get('contrasenaDos')?.touched || registerForm.get('contrasenaDos')?.dirty)">
+            <small class="error text-danger">La contraseña es requerida y debe tener al menos 6 caracteres.</small>
+          </div>
+          <div *ngIf="passwordDiferentes">
+            <small class="error text-danger">La contraseñas son diferentes.</small>
+          </div>
+
+        </div>
+        <div class="col-12 text-center" *ngIf="mensajeError!==''">
+          <small class="error text-danger">{{mensajeError}}.</small>
+        </div>
+        <button *ngIf="!isLoading" type="submit" [disabled]="registerForm.invalid || passwordDiferentes"
+          class="btn btn-custom w-100">Registrarme</button>
+        <button *ngIf="isLoading" type="button" class="btn btn-custom w-100"><i
+            class="fas fa-spinner fa-spin"></i></button>
+      </form>
+      <div class="text-center mt-3">
+        <a [routerLink]="['/']" class="link text-white">¿Tienes una cuenta? <span
+            class="textoprincipalcolor">Logueate</span> </a>
+      </div>
+    </div>
+  </div>
+
+</div>

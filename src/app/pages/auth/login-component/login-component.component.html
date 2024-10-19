@@ -1,0 +1,55 @@
+<div class="container-fluid bodyDashboard vh-100 d-flex p-0">
+  <div class="image-container d-none d-lg-block">
+    <img
+      src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/game-updates/Minecraft-Tricky-Trials_Featured-Image-0_570x321.jpg?height=1080&width=1080"
+      alt="Minecraft-style landscape" class="background-image img-fluid" />
+  </div>
+  <div class="form-container  mx-auto  w-100">
+    <div class="form-content secondBodyDashboard p-4 rounded shadow h-100">
+      <div class="text-center">
+        <img [src]="'assets/login/logo.png'" alt="Game logo" class="logo mb-3" />
+        <h2 class="title text-white">Iniciar sesión</h2>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="username" class="form-label text-white">Nombre de usuario</label>
+          <input id="username" formControlName="username" placeholder="Nombre de usuario" class="form-control" />
+          <div
+            *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)">
+            <small class="error text-danger">El nombre de usuario es requerido.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label text-white">Contraseña</label>
+          <div class="input-group">
+            <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"
+              placeholder="Contraseña" class="form-control" />
+            <button type="button" (click)="showPassword = !showPassword" class="btn btn-outline-secondary"
+              id="button-addon2">
+              <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <div
+            *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+            <small class="error text-danger">La contraseña es requerida y debe tener al menos 6 caracteres.</small>
+          </div>
+          <div class="col-12 text-center" *ngIf="mensajeError!==''">
+            <small class="error text-danger">{{mensajeError}}.</small>
+          </div>
+        </div>
+
+        <button *ngIf="!isLoading" type="submit" [disabled]="loginForm.invalid" class="btn btn-custom w-100">Iniciar
+          sesión</button>
+        <button *ngIf="isLoading" type="button" class="btn btn-custom w-100"><i
+            class="fas fa-spinner fa-spin"></i></button>
+      </form>
+      <div class="text-center mt-3">
+        <a href="#" class="link text-white">¿Tienes problemas para iniciar sesión?</a>
+      </div>
+      <div class="text-center">
+        <a [routerLink]="['/register']" class="link text-white">¿No tienes una cuenta? <span
+            class="textoprincipalcolor">Regístrate</span></a>
+      </div>
+    </div>
+  </div>
+</div>

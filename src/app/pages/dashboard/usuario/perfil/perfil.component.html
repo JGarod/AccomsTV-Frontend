@@ -1,0 +1,127 @@
+<div class="col-12">
+    <div class="d-flex vh-100 sizebodyDashboard bodyDashboard text-white" *ngIf="cargando">
+        <!-- Main Content -->
+        <div class="flex-grow-1 d-flex flex-column">
+            <!-- Header -->
+            <header class="secondBodyDashboard p-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img [src]="'assets/login/logo.png?h'" alt="Game logo" class="logo mb-3" />
+                    <!-- <span class="font-weight-bold h5 mr-3">Siguiendo</span>
+                    <span class="font-weight-bold h5">Explorar</span> -->
+                </div>
+            </header>
+
+            <div class="flex-grow-1 d-flex p-0 bg-dark" style="overflow: hidden; max-height: 105vh;">
+                <div [style.flex]="chatVisible ? '0 0 80%' : '0 0 97%'"
+                    class=" rounded-lg d-flex align-items-center justify-content-center text-center">
+                    <app-video></app-video>
+                </div>
+
+                <!-- Chat (Visible en Escritorio) -->
+                <div *ngIf="!isMobile && chatVisible" class="bodyDashboard d-flex flex-column chat-panel"
+                    [ngClass]="{'transparent-chat': !isFocusedChat}" (click)="onFocus()"
+                    style="overflow: hidden; max-height: 100vh;">
+                    <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                        <h2 class="font-weight-bold h5">CHAT DEL STREAM</h2>
+                        <button (click)="toggleChat()" class="btn btn-link">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </button>
+                    </div>
+                    <div class="flex-grow-1 overflow-auto p-3" style="max-height: calc(100vh - 100px);">
+                        <div *ngFor="let msg of messages" class="message">
+                            <span
+                                [ngClass]="{'color-matching': msg.iduser != datosCanal.id, 'color-non-matching': msg.iduser == datosCanal.id}">
+                                {{ msg.user }}: <span class="text-white">{{ msg.message }}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-3 border-top">
+                        <div class="d-flex" *ngIf="isLoginUser">
+                            <div class="input-container">
+                                <input type="text" placeholder="Enviar un mensaje" (focus)="onFocus()" (blur)="onBlur()"
+                                    [(ngModel)]="message" (keyup.enter)="sendMessage()"
+                                    class="flex-grow-1 form-control bg-dark text-white border-0" />
+                                <button class="btn btn-purple ml-2 d-flex align-items-center" (click)="sendMessage()">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                                <button class="btn btn-link ml-1" (click)="toggleEmojiPicker()">
+                                    <i class="fa-solid fa-smile"></i>
+                                </button>
+                                <div [ngClass]="{'emoji-picker': true, 'show': emojiPickerVisible}">
+                                    <div class="emoji-grid">
+                                        <span *ngFor="let emoji of emojis" (click)="addEmoji(emoji)">{{ emoji }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Espacio para el botón del chat cuando está oculto -->
+                <div *ngIf="!isMobile && !chatVisible" class="bodyDashboard d-flex flex-column chat-hidden">
+                    <div class="border-bottom d-flex justify-content-between align-items-center">
+                        <button (click)="toggleChat()" class="btn btn-link">
+                            <i class="fa-solid fa-angles-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stream Info -->
+            <div class="secondBodyDashboard p-3 d-flex align-items-center">
+                <img [src]="datosCanal.logo ? datosCanal.logo : 'assets/user/profile.jpg' +'?height=50&width=50'"
+                    alt="Streamer" class="rounded-circle mr-3" style="width: 50px; height: 50px;" />
+                <div>
+                    <h2 class="font-weight-bold h5">{{datosCanal.nombre}}</h2>
+                    <p>SAGA RP 🔥 ¿activo hoy? ojala :( Tu sheriff fav en servicio</p>
+                </div>
+            </div>
+
+            <!-- Chat Móvil -->
+            <div *ngIf="isMobile" class="mobile-chat d-flex flex-column">
+                <div class="p-3 border-bottom">
+                    <h2 class="font-weight-bold h5">CHAT DEL STREAM (Móvil)</h2>
+                </div>
+                <div class="flex-grow-1 overflow-auto p-3" style="margin: 0;">
+                    <div *ngFor="let msg of messages" class="message">
+                        <span
+                            [ngClass]="{'color-matching': msg.iduser !=datosCanal.id, 'color-non-matching': msg.iduser ==datosCanal.id}">
+                            {{ msg.user }}: <span class="text-white">
+                                {{msg.message}}
+                            </span>
+                        </span>
+                        <!-- <span>{{ msg.user }}</span> :{{msg.message}} -->
+                    </div>
+                </div>
+                <div class="p-3 border-top d-flex align-items-center" style="flex-shrink: 0;" *ngIf="isLoginUser">
+                    <div class="input-container">
+                        <input type="text" placeholder="Enviar un mensaje" (focus)="onFocus()" (blur)="onBlur()"
+                            [(ngModel)]="message" (keyup.enter)="sendMessage()"
+                            class="flex-grow-1 form-control bg-dark text-white border-0" />
+                        <button class="btn btn-purple ml-2 d-flex align-items-center" (click)="sendMessage()">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                        <button class="btn btn-link ml-1" (click)="toggleEmojiPicker()">
+                            <i class="fa-solid fa-smile"></i>
+                        </button>
+                        <div [ngClass]="{'emoji-picker': true, 'show': emojiPickerVisible}">
+                            <div class="emoji-grid">
+                                <span *ngFor="let emoji of emojis" (click)="addEmoji(emoji)">{{ emoji }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="col-12" *ngIf="!cargando">
+        hola
+    </div>
+</div>

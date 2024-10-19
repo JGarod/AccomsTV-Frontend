@@ -1,0 +1,8 @@
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* O 'contain' si quieres mantener la relación de aspecto */
+    background-color: #F5CB43;
+    /* Para verificar el tamaño */
+}

@@ -1,0 +1,164 @@
+/* login.component.css */
+.container-fluid {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    /* Asegura que ocupe todo el ancho */
+}
+
+.image-container {
+    display: none;
+    /* Ocultar en pantallas pequeñas */
+    width: 80%;
+    /* Ajusta a 80% del ancho */
+    height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    /* Ancho máximo del formulario */
+    margin: auto;
+    /* Centrar el formulario */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    /* Espaciado alrededor del formulario */
+}
+
+.form-content {
+    width: 100%;
+    height: 100% !important;
+    /* Altura completa */
+    /* Color de fondo del formulario */
+    padding: 2rem;
+    /* Espaciado interno */
+    border-radius: 0.5rem;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Sombra del formulario */
+}
+
+.text-center {
+    text-align: center;
+}
+
+.logo {
+    height: 85px;
+    width: 85px;
+}
+
+.title {
+    margin-top: 1.5rem;
+    font-size: 1.875rem;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    color: white;
+    /* Color del texto */
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    /* Espacio entre los campos */
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    /* Espaciado interno */
+    background-color: #4a5568;
+    /* Color de fondo del campo */
+    border: 2px solid #805ad5;
+    /* Color del borde */
+    border-radius: 0.25rem;
+    /* Bordes redondeados */
+    color: white;
+    /* Color del texto */
+}
+
+/* Estilos para el placeholder */
+.input-field::placeholder {
+    color: #a0aec0;
+    /* Color del placeholder */
+    opacity: 1;
+    /* Asegurarse de que el placeholder sea completamente opaco */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #a0aec0;
+    /* Color del ícono */
+}
+
+.submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    /* Espaciado interno */
+    background-color: #805ad5;
+    /* Color de fondo del botón */
+    color: white;
+    /* Color del texto del botón */
+    border: none;
+    border-radius: 0.25rem;
+    /* Bordes redondeados */
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #6b46c1;
+    /* Color de fondo en hover */
+}
+
+.link {
+    color: #b794f4;
+    /* Color del enlace */
+    text-decoration: none;
+    /* Sin subrayado */
+}
+
+.link:hover {
+    color: #9f7aea;
+    /* Color del enlace en hover */
+}
+
+/* Estilos para mensajes de error */
+.error {
+    color: #ff4d4d;
+    /* Color del mensaje de error */
+    font-size: 0.8em;
+    /* Tamaño de fuente del mensaje de error */
+}
+
+.position-absolute {
+    cursor: pointer;
+    /* Cambia el cursor a pointer cuando pasas el mouse sobre el ícono */
+}
+
+
+/* Mostrar imagen en pantallas grandes */
+@media (min-width: 1024px) {
+    .image-container {
+        display: block;
+        /* Mostrar en pantallas grandes */
+    }
+
+    .form-container {
+        padding: 0;
+        /* Elimina el padding en pantallas grandes */
+    }
+}
