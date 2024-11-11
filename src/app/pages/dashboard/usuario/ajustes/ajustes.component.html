@@ -1,0 +1,85 @@
+<div class="container-fluid secondBodyDashboard">
+    <div class="row">
+        <!-- Menú lateral -->
+        <div class="col-2 col-md-12 mb-3 sidebar secondBodyDashboard">
+            <div class="back-button mb-3">
+                <a [routerLink]="['/dashboard']">
+                    <i class="fa fa-arrow-left text-white"></i>
+                    <span class="d-none d-md-inline text-white ml-2">Regresar al
+                        inicio</span>
+                </a>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item cursor-pointer" (click)="cargado('Cuenta')">
+                    <a class=" d-flex align-items-center">
+                        <i class="fa fa-home me-2 text-white"></i>
+                        <span class="d-none d-md-inline text-white">Cuenta</span>
+                    </a>
+                </li>
+                <li class="list-group-item cursor-pointer" (click)="cargado('Stream')">
+                    <a class=" d-flex align-items-center">
+                        <i class="fa fa-id-card me-2 text-white"></i>
+                        <span class="d-none d-md-inline text-white">Directo</span>
+                    </a>
+                </li>
+                <li class="list-group-item cursor-pointer" (click)="cargado('Password')">
+                    <a class=" d-flex align-items-center">
+                        <i class="fa fa-shield me-2 text-white"></i>
+                        <span class="d-none d-md-inline text-white">Seguridad</span>
+                    </a>
+                </li>
+                <!-- <li class="list-group-item">
+                    <a  class=" d-flex align-items-center">
+                        <i class="fa fa-mobile me-2 text-white"></i>
+                        <span class="d-none d-md-inline text-white">Dispositivos</span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a  class=" d-flex align-items-center">
+                        <i class="fa fa-user me-2 text-white"></i>
+                        <span class="d-none d-md-inline text-white">Perfiles</span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="col-10 col-md-12  secondBodyDashboard">
+            <div class="card mb-4">
+                <!-- <div class="card-body">
+                    <h2 class="mb-4">Cuenta</h2>
+                    <h4>Información de la membresía</h4>
+                    <div class="membership-info d-flex align-items-center mb-3">
+                        <span class="badge badge-primary me-2">Miembro desde febrero de 2024</span>
+                        <p class="mb-0">Eres miembro extra en el plan de otra persona: <strong>holas</strong></p>
+                    </div>
+                    <button class="btn btn-outline-primary w-100">Administrar membresía</button>
+                </div> -->
+                <div class="card-body" *ngIf="TabSeleccionado==='Cuenta'">
+                    <app-user-data></app-user-data>
+                </div>
+                <div class="card-body" *ngIf="TabSeleccionado==='Stream'">
+                    <app-auth-stream></app-auth-stream>
+                </div>
+                <div class="card-body" *ngIf="TabSeleccionado==='Password'">
+                    <app-password></app-password>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <!-- <h5 class="mb-3 text-white">Vínculos rápidos</h5>
+                <div class="list-group">
+                    <button class="list-group-item list-group-item-action">
+                        <i class="fa fa-cog me-2"></i> Administrar acceso y dispositivos
+                    </button>
+                    <button class="list-group-item list-group-item-action">
+                        <i class="fa fa-lock me-2"></i> Actualizar contraseña
+                    </button>
+                    <button class="list-group-item list-group-item-action">
+                        <i class="fa fa-sliders me-2"></i> Editar configuración
+                    </button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

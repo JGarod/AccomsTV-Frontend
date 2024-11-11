@@ -34,16 +34,6 @@
     /* Color de fondo al pasar el cursor */
 }
 
-.user-logo {
-    width: 24px;
-    /* Ajusta el tamaño para que sea igual al de los íconos */
-    height: 24px;
-    /* Asegúrate de que sea cuadrada */
-    border-radius: 50%;
-    /* Para que sea circular */
-    object-fit: cover;
-    /* Para que la imagen se ajuste dentro del contenedor */
-}
 
 .sidebar {
     width: 60px;
@@ -84,25 +74,48 @@
     margin-right: 10px;
 }
 
-/* Estilos para el submenú flotante */
-.dropdown-menu {
-    background-color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0.25rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    min-width: 150px;
+.custom-carousel {
+    width: 100% !important;
+    height: 30vh !important;
 }
 
-.dropdown-item {
-    padding: 10px 15px;
-    color: #212529;
-    text-decoration: none;
-    display: block;
-    white-space: nowrap;
+.custom-carousel .p-carousel-item {
+    display: flex;
+    justify-content: center;
+
+    /* Limita el ancho máximo de los elementos */
+    margin: 0 auto;
+    /* Centra el elemento si solo hay uno */
 }
 
-.dropdown-item:hover {
-    background-color: #f8f9fa;
-    color: #212529;
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer !important;
 }
+
+.product-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.product-description {
+    font-size: 14px;
+    color: white;
+    margin-top: 4px;
+}
+
+  .product-item img {
+      max-width: 100%;
+      height: 30px;
+  }

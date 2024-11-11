@@ -1,11 +1,11 @@
 .bodyDashboard {
-    background-color: #15181f;
+    background-color: #15181f !important;
 
 }
 
 
 .secondBodyDashboard {
-    background-color: #2C2C3A;
+    background-color: #2C2C3A !important;
 
 }
 
@@ -89,4 +89,49 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #5a6268;
     /* Color más oscuro al pasar el ratón */
+}
+
+.btn-custom-two {
+    background-color: #2C2C3A !important;
+    /* Fondo personalizado */
+    color: white !important;
+    /* Texto blanco */
+    border-color: transparent;
+    /* Sin bordes */
+}
+
+.btn-custom-two:hover {
+    background-color: #15181f !important;
+    /* Cambia el color al hacer hover */
+    color: white !important;
+}
+
+.videoClase {
+    /* width: 100%; */
+    /* background-color: #F5CB43; */
+    object-fit: cover;
+}
+
+/* Opcional: Aplicar fondo blanco y bordes para las tarjetas */
+.secondBodyDashboard .card,
+.secondBodyDashboard .list-group-item {
+    background-color: #15181f !important;
+    border: 1px solid #15181f;
+    color: white !important;
+}
+
+
+
+.secondBodyDashboard .list-group-item:hover {
+    background-color: #20232c !important;
+    border: 1px solid #20232c;
+    color: white !important;
+}
+
+p {
+    color: white !important;
+}
+
+.cursor-pointers {
+    cursor: pointer !important;
 }

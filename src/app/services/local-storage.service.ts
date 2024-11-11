@@ -1,12 +1,9 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import localforage from 'localforage';
 import { isPlatformBrowser } from '@angular/common';
+import { UserData } from '../interfeces/usuario/usuario.interface';
 
-export interface UserData {
-  token: string;
-  idUsuario: string;
-  nombreUsuario: string;
-}
+
 
 @Injectable({
   providedIn: 'root'

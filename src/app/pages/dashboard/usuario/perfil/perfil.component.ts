@@ -56,6 +56,7 @@ export class PerfilComponent {
       this.nombre = params.get('nombre') || '';
       this.cargarCanal();
       this.isMobile = this.deviceService.isMobile;
+      this.cambiarChatMobile();
       this.cargadoSockets();
     });
 
@@ -63,8 +64,10 @@ export class PerfilComponent {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
         this.isMobile = this.deviceService.isMobile;
+        this.cambiarChatMobile();
         this.cdr.markForCheck();
       });
+    window.addEventListener('beforeunload', this.onUnload.bind(this));
   }
 
 
@@ -93,8 +96,8 @@ export class PerfilComponent {
   }
 
   checkScreenSize() {
-    this.isMobile = window.innerWidth <= this.minimoMovil; // Define que es móvil si el ancho es <= this.minimoMovilpx
-    // Aquí puedes agregar lógica adicional para ocultar/mostrar chat si es necesario
+    this.isMobile = window.innerWidth <= this.minimoMovil;
+    this.cambiarChatMobile();
   }
 
   updateLayout() {
@@ -103,7 +106,8 @@ export class PerfilComponent {
 
     // Define el límite para considerar que es mobile
     this.isMobile = (width <= this.minimoMovil) || (width > this.minimoMovil && height < width);
-    // this.isMobile = width <= this.minimoMovil && height <= 600; // Ajusta según tus necesidades
+    this.cambiarChatMobile();
+
   }
 
 
@@ -134,10 +138,6 @@ export class PerfilComponent {
   async sendMessage() {
     let data = await this.loginService.getItems();
     if (this.isLoginUser && this.message.trim() && data?.nombreUsuario && data?.idUsuario) {
-      console.log('data', data);
-      console.log('nombre', this.nombre);
-      console.log('message', this.message);
-      console.log('USER',);
       this.chatSocketsService.sendMessage(this.nombre, this.message, data.nombreUsuario, data.idUsuario);
       this.message = '';
       this.cdr.markForCheck();
@@ -176,6 +176,12 @@ export class PerfilComponent {
     this.message += emoji; // Añadir emoji al mensaje
   }
 
+  //basicamente cuando el telefono sea mobile le cambia el atributo a chat para que se vaya de la parte movil
+  cambiarChatMobile() {
+    this.chatVisible = !this.isMobile;
+  }
 
-
+  private onUnload(): void {
+    this.chatSocketsService.leaveRoom(this.nombre);
+  }
 }

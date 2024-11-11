@@ -1,0 +1,16 @@
+.main-content {
+    flex: 1 0 auto;
+    /* Hace que el contenido ocupe el espacio disponible */
+    min-height: calc(100vh - 50px);
+    /* Ajusta '50px' al tamaño de tu footer */
+    padding-bottom: 50px;
+    /* Ajusta también esto para asegurarte de que el contenido no se superponga con el footer */
+}
+
+/* El footer debe estar abajo siempre */
+app-footer {
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}

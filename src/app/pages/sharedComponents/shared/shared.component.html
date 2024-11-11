@@ -1,0 +1,5 @@
+<app-header *ngIf="cargadoData" [usuarioActual]="dataUsuario"></app-header>
+<div class="main-content secondBodyDashboard">
+    <router-outlet></router-outlet> <!-- Aquí se cargarán los demás componentes -->
+</div>
+<app-footer></app-footer>

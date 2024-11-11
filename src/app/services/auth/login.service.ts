@@ -3,8 +3,9 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { LocalStorageService, UserData } from '../local-storage.service';
+import { LocalStorageService } from '../local-storage.service';
 import { UsuarioInterface } from '../../interfeces/canales/canales.interface';
+import { UserData } from '../../interfeces/usuario/usuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,28 +23,6 @@ export class LoginService {
     return this.http.post(`${this.apiURL}/auth/registro`, { nombre, password, passwordDos, correo });
   }
 
-  // Obtener perfil de usuario
-  getPerfil(): Observable<any> {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token');
-      return this.http.get(`${this.apiURL}/auth/perfil`, {
-        headers: {
-          Authorization: `Bearer ${token}` // Incluye el token en el encabezado
-        }
-      }).pipe(
-        catchError((error) => {
-          // Si el error es 401 (no autorizado)
-          if (error.status === 401) {
-            this.eliminarLocalStorage();
-            this.router.navigate(['/']);
-          }
-          return throwError(() => error);
-        })
-      );
-    } else {
-      return throwError(() => 'No se puede acceder');
-    }
-  }
 
   // Eliminar datos del LocalStorage
   eliminarLocalStorage(): void {

@@ -27,7 +27,7 @@
           <label for="contrasena" class="form-label text-white">Contraseña</label>
           <div class="input-group">
             <input id="contrasena" formControlName="contrasena" [type]="showcontrasena ? 'text' : 'password'"
-              placeholder="Contraseña" class="form-control" (change)="confirmarClaves()" />
+              placeholder="Contraseña" class="form-control" (input)="confirmarClaves()" />
             <button type="button" (click)="showcontrasena = !showcontrasena" class="btn btn-outline-secondary"
               id="button-addon2">
               <i class="fas" [ngClass]="showcontrasena ? 'fa-eye-slash' : 'fa-eye'"></i>
@@ -42,7 +42,7 @@
           <label for="contrasenaDos" class="form-label text-white">Confirmar Contraseña</label>
           <div class="input-group">
             <input id="contrasenaDos" formControlName="contrasenaDos" [type]="showcontrasenaDos ? 'text' : 'password'"
-              placeholder="Contraseña" class="form-control" (change)="confirmarClaves()" />
+              placeholder="Contraseña" class="form-control" (input)="confirmarClaves()" />
             <button type="button" (click)="showcontrasenaDos = !showcontrasenaDos" class="btn btn-outline-secondary"
               id="button-addon2">
               <i class="fas" [ngClass]="showcontrasenaDos ? 'fa-eye-slash' : 'fa-eye'"></i>

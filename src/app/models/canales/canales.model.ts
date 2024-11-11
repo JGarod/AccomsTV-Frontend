@@ -2,7 +2,7 @@ export class CanalModel {
     constructor(
         public id: number,
         public nombre: string,
-        public logo?: string,
+        public logo: string | null,
         public portada?: string) { }
 
 }

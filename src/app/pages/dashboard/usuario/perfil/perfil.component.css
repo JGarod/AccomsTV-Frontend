@@ -21,6 +21,7 @@
         /* height: 5vh; */
     }
 
+    
     .infoStream {
         flex: 0 0 10%;
     }
@@ -74,6 +75,7 @@
         display: flex;
         /* Limitar la altura total del panel de chat */
     }
+    
 
     .infoStream {
         flex: 0 0 10%;
@@ -178,4 +180,21 @@
     /* Usa flexbox para alinear los elementos */
     align-items: center;
     /* Alinea verticalmente los elementos */
+}
+.logo {
+    width: 200px;
+    height: 200px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+}
+
+.sub-message {
+    font-size: 18px;
+    color: white;
 }

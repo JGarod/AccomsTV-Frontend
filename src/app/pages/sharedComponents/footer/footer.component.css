@@ -1,0 +1,11 @@
+.nav-link:hover {
+    color: #F5CB43 !important;
+}
+
+.bi {
+    font-size: 1.5rem;
+}
+
+.bi:hover {
+    color: #F5CB43;
+}

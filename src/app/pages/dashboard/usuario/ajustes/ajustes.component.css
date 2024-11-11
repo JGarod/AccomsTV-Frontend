@@ -1,0 +1,47 @@
+.container-fluid {
+    max-width: 1200px;
+}
+
+
+.sidebar .list-group-item {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .list-group-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.back-button a {
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.membership-info p {
+    font-size: 0.9em;
+    margin-left: 8px;
+}
+
+.badge {
+    font-size: 0.8em;
+    background-color: #6c63ff;
+}
+
+.quick-links .list-group-item {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        border-right: none;
+    }
+}

@@ -1,0 +1,89 @@
+.dropdown-menu {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    color: #212529;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .secondBodyDashboard {
+        flex-direction: row !important;
+    }
+
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .isWeb {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: flex !important;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .secondBodyDashboard.mobile-menu {
+        align-items: center;
+        position: relative;
+    }
+
+    .logo {
+        height: 40px;
+        width: auto;
+    }
+
+    .mobile-search-icon {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Nuevos estilos para el menú desplegable en móvil */
+    .mobile-only .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: auto;
+        width: auto;
+        min-width: 200px;
+    }
+
+    .mobile-only .dropdown-item {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .mobile-only .position-relative {
+        position: relative;
+    }
+}

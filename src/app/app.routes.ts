@@ -5,20 +5,40 @@ import { LoginComponentComponent } from './pages/auth/login-component/login-comp
 import { IndexComponent } from './pages/dashboard/index/index.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { PerfilComponent } from './pages/dashboard/usuario/perfil/perfil.component';
+import { SharedComponent } from './pages/sharedComponents/shared/shared.component';
+import { AjustesComponent } from './pages/dashboard/usuario/ajustes/ajustes.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponentComponent }, // Ruta principal
-  { path: 'dashboard', component: IndexComponent, canActivate: [AuthGuard] }, // Ruta protegida
   { path: 'register', component: RegisterComponent },
   {
-    path: 'tv/:nombre',
-    loadComponent: () => import('./pages/dashboard/usuario/perfil/perfil.component').then(m => m.PerfilComponent)
-  }// Ruta protegida
+    path: '',
+    component: SharedComponent, // Aquí renderizas el layout con el header
+    children: [
+      { path: 'dashboard', component: IndexComponent }, // Ruta protegida
+      // { path: 'dashboard', component: IndexComponent, canActivate: [AuthGuard] }, // Ruta protegida
+      {
+        path: 'tv/:nombre',
+        loadComponent: () => import('./pages/dashboard/usuario/perfil/perfil.component').then(m => m.PerfilComponent),
+      },
+      {
+        path: 'config', component: AjustesComponent, canActivate: [AuthGuard],
+        children: [
+
+        ]
+      }, // Ruta protegida
+    ]
+  }
+  // { path: 'dashboard', component: IndexComponent, canActivate: [AuthGuard] }, // Ruta protegida
+  // {
+  //   path: 'tv/:nombre',
+  //   loadComponent: () => import('./pages/dashboard/usuario/perfil/perfil.component').then(m => m.PerfilComponent)
+  // }// Ruta protegida
   // Otras rutas...
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

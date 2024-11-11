@@ -3,9 +3,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/auth/login.service';
 import { Router, RouterModule } from '@angular/router';
-import { LocalStorageService, UserData } from '../../../services/local-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { CanalModel } from '../../../models/canales/canales.model';
 import { UsuarioInterface } from '../../../interfeces/canales/canales.interface';
+import { SharedService } from '../../../services/shared/shared.service';
+import { UserData, UserDataExpansiva } from '../../../interfeces/usuario/usuario.interface';
 
 @Component({
   selector: 'app-login-component',
@@ -22,7 +24,7 @@ export class LoginComponentComponent {
   constructor(private fb: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {
   }
 
@@ -39,17 +41,18 @@ export class LoginComponentComponent {
 
     if (this.loginForm.valid) {
       this.isLoading = true; // Mueve esto antes de hacer la llamada
-      console.log('Intentando iniciar sesión con:', this.loginForm.value);
 
       this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
         next: (response: UsuarioInterface) => {
-          console.log('Respuesta del servidor:', response); // Verifica la respuesta
-          this.isLoading = false; // Aquí es correcto
+          this.isLoading = false;
+          //Esta información es para la base de datos local, solo le mando 3 datos para no llenarla
           let usuario: UserData = {
             token: response.token,
             idUsuario: response.usuario.id.toString(),
             nombreUsuario: response.usuario.nombre,
           }
+          //esta data es la expansiva, todo lo comparto a los demas componentes
+
           this.localStorageService.setUserData(usuario).then(() =>
             this.router.navigate(['/dashboard'])
           );
@@ -61,7 +64,6 @@ export class LoginComponentComponent {
         }
       });
     } else {
-      console.error('Form is invalid', this.loginForm.errors);
     }
   }
 

@@ -8,7 +8,6 @@ export interface CanalInterface {
 export interface CanalesInterface {
     msg: string;
     canales: CanalModel[];
-    usuario: Usuario;
 }
 
 export interface UsuarioInterface {
