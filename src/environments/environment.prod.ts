@@ -1,6 +1,6 @@
 
-let ip = 'http://ec2-52-90-118-173.compute-1.amazonaws.com'
-let imgs = 'http://ec2-52-90-118-173.compute-1.amazonaws.com'
+let ip = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
+let imgs = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
 let rtmp = 'rtmp://ec2-52-90-118-173.compute-1.amazonaws.com/live/'
 // let ip = 'https://3x1c783j-3000.use2.devtunnels.ms'
 export const environment = {
