@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ConfigUserData } from '../../../../../../interfeces/config-user/config-user.interface';
 
 @Component({
   selector: 'app-password',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './password.component.css'
 })
 export class PasswordComponent {
+  @Input() usuarioActual!: ConfigUserData | null;
 
 }

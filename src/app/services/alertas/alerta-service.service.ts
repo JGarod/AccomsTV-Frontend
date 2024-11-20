@@ -62,4 +62,26 @@ export class AlertaServiceService {
       },
     });
   }
+  //swal de contraseñas
+  async solicitarContraseña(): Promise<string | null> {
+    const { value: password } = await Swal.fire({
+      title: 'Ingresa tu contraseña',
+      text: 'Cuando cambias el correo es necesario que ingreses la contraseña de tu cuenta',
+      input: 'password',
+      inputPlaceholder: 'Ingresa tu contraseña',
+      inputAttributes: {
+        maxlength: '10',
+        autocapitalize: 'off',
+        autocorrect: 'off',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      customClass: {
+        popup: 'custom-swal', // Usa el estilo personalizado aquí
+      },
+    });
+
+    return password || null; // Devuelve la contraseña o null si se cancela
+  }
 }

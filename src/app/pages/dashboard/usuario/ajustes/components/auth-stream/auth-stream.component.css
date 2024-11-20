@@ -1,0 +1,16 @@
+/* Ajustar padding y márgenes en dispositivos pequeños */
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 0.5rem;
+    }
+
+    .input-group input {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}

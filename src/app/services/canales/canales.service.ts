@@ -37,7 +37,8 @@ export class CanalesService {
     }).pipe(
       map(response => {
         const canales = response.canales.map(canal =>
-          new CanalModel(canal.id, canal.nombre, canal.logo ?? 'assets/user/profile.jpg')
+          new CanalModel(canal.id, canal.nombre, canal.logo)
+          // new CanalModel(canal.id, canal.nombre, canal.logo ?? 'assets/user/profile.jpg')
         );
         // Transforma la respuesta a la interfaz Canal
         return {

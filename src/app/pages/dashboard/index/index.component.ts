@@ -8,6 +8,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { AlertaServiceService } from '../../../services/alertas/alerta-service.service';
 import { CarouselModule } from 'primeng/carousel';
+import { CanalesInterface } from '../../../interfeces/canales/canales.interface';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-index',
@@ -37,6 +39,7 @@ export class IndexComponent {
       numScroll: 1
     }
   ];
+  public apiIMG = environment.apiImagenes;
   // Ejemplo de datos para las transmisiones
 
   constructor(
@@ -60,9 +63,19 @@ export class IndexComponent {
     try {
       const canalesObservable = await this.canalesService.getCanales(); // Espera a que se resuelva la promesa
       canalesObservable.subscribe({
-        next: (response) => {
-          this.placeholderStreams = response.canales;
+        next: async (response: CanalesInterface) => {
+          await Promise.all(response.canales.map((canal) => {
+            console.log(canal);
+            if (canal && canal.logo) {
+              canal.logo = this.apiIMG + canal.logo;
+            }
+            if (canal && canal.portada) {
+              canal.portada = this.apiIMG + canal.portada;
+            }
+          }));
           console.log('-----', response);
+          this.placeholderStreams = response.canales;
+
         },
         error: (err) => {
           console.error('Error en la obtención del perfil:', err);

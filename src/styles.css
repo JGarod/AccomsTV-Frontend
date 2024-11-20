@@ -1,26 +1,29 @@
 .bodyDashboard {
-    background-color: #15181f !important;
+    background-color: #031716 !important;
+        /* background-color: #15181f !important; */
 
 }
 
 
 .secondBodyDashboard {
-    background-color: #2C2C3A !important;
+    background-color: #032F30 !important;
+        /* background-color: #2C2C3A !important; */
 
 }
 
 .botonesPrincipales {
     /* background-color: #CC0000 !important; */
-    background-color: #F5CB43 !important;
+    background-color: #0A7075 !important;
+        /* background-color: #F5CB43 !important; */
     color: white !important;
 }
 
 .textoprincipalcolor {
-    color: #F5CB43 !important;
+    color: #0A7075 !important;
 }
 
 .btn-custom {
-    background-color: #F5CB43 !important;
+    background-color: #0A7075 !important;
     /* Fondo personalizado */
     color: white !important;
     /* Texto blanco */
@@ -29,13 +32,21 @@
 }
 
 .btn-custom:hover {
-    background-color: #f6bd00 !important;
+    background-color: #186266 !important;
+        /* background-color: #f6bd00 !important; */
+        /* Cambia el color al hacer hover */
+        color: white !important;
+    }
+    
+    .btn-custom-selected {
+        background-color: #186266 !important;
+        /* background-color: #f6bd00 !important; */
     /* Cambia el color al hacer hover */
     color: white !important;
 }
 
 .custom-swal {
-    background-color: #15181f !important;
+    background-color: #031716 !important;
     /* Color de fondo de la alerta */
     color: white !important;
     /* Color del texto */
@@ -52,7 +63,7 @@
 }
 
 .custom-swal .swal2-confirm {
-    background-color: #F5CB43 !important;
+    background-color: #0A7075 !important;
     /* Color del botón de confirmación */
     color: white !important;
     /* Color del texto del botón */
@@ -61,9 +72,9 @@
 .custom-swal .swal2-cancel {
     background-color: transparent !important;
     /* Color de fondo del botón de cancelación */
-    color: #F5CB43 !important;
+    color: #0A7075 !important;
     /* Color del texto del botón de cancelación */
-    border: 2px solid #F5CB43 !important;
+    border: 2px solid #0A7075 !important;
     /* Borde del botón de cancelación */
 }
 
@@ -74,12 +85,12 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #15181f;
+    background: #031716;
     /* Color del fondo de la barra de desplazamiento */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2C2C3A;
+    background: #032F30;
     /* Color del 'pulgar' de la barra de desplazamiento */
     border-radius: 10px;
     /* Bordes redondeados */
@@ -92,7 +103,7 @@
 }
 
 .btn-custom-two {
-    background-color: #2C2C3A !important;
+    background-color: #032F30 !important;
     /* Fondo personalizado */
     color: white !important;
     /* Texto blanco */
@@ -101,22 +112,22 @@
 }
 
 .btn-custom-two:hover {
-    background-color: #15181f !important;
+    background-color: #031716 !important;
     /* Cambia el color al hacer hover */
     color: white !important;
 }
 
 .videoClase {
     /* width: 100%; */
-    /* background-color: #F5CB43; */
+    /* background-color: #0A7075; */
     object-fit: cover;
 }
 
 /* Opcional: Aplicar fondo blanco y bordes para las tarjetas */
 .secondBodyDashboard .card,
 .secondBodyDashboard .list-group-item {
-    background-color: #15181f !important;
-    border: 1px solid #15181f;
+    background-color: #031716 !important;
+        border: 1px solid #031716;
     color: white !important;
 }
 

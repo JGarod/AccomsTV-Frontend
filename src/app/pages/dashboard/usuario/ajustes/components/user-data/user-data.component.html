@@ -1,1 +1,86 @@
-<p>user-data works!</p>
+<div class="container py-4" *ngIf="cargadoComponente">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Configuración de Perfil</h2>
+
+                    <form [formGroup]="configForm" (ngSubmit)="onSubmit()">
+
+                        <div class="text-center mb-4">
+                            <div class="position-relative d-inline-block">
+                                <img [src]="usuarioActualLocal?.logo || 'assets/user/profile.jpg'"
+                                    class="rounded-circle profile-image"
+                                    style="width: 150px; height: 150px; object-fit: cover;" alt="Imagen de perfil">
+                                <div class="position-absolute bottom-0 end-0">
+                                    <label *ngIf="!cambioLogo" for="profileImage"
+                                        class="btn btn-custom btn-sm rounded-circle">
+                                        <i class="fa fa-camera"></i>
+                                    </label>
+                                    <label *ngIf="cambioLogo" (click)="removeImg('logo')"
+                                        class="btn btn-danger btn-sm rounded-circle">
+                                        <i class="fa fa-times"></i>
+                                    </label>
+                                    <input (change)="subirPerfil($event)" type="file" id="profileImage" class="d-none"
+                                        accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Imagen de muro
+                                <pre>(Cuando estes offline)</pre>
+                            </label>
+                            <div class="position-relative">
+                                <img [src]="usuarioActualLocal?.portada || 'assets/user/wallv2.jpg'"
+                                    class="wall-image w-100" style="height: 200px; object-fit: cover;"
+                                    alt="Imagen de muro">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <label *ngIf="!cambioMuro" for="wallImage" class="btn btn-custom btn-sm">
+                                        <i class="bi bi-image"></i> Cambiar muro
+                                    </label>
+                                    <label *ngIf="cambioMuro" (click)="removeImg('muro')" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-times"></i> Cancelar
+                                    </label>
+                                    <input (change)="subirMuro($event)" type="file" id="wallImage" class="d-none"
+                                        accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" formControlName="email"
+                                placeholder="ejemplo@correo.com">
+                            <div class="text-danger"
+                                *ngIf="configForm.get('email')?.touched && configForm.get('email')?.errors?.['email']">
+                                Por favor ingrese un correo electrónico válido
+                            </div>
+                        </div>
+
+                        <!-- Nombre de Perfil -->
+                        <div class="mb-3">
+                            <label for="profileName" class="form-label">Nombre de Perfil</label>
+                            <input type="text" class="form-control" id="profileName" formControlName="profileName"
+                                placeholder="Tu nombre">
+                            <div class="text-danger"
+                                *ngIf="configForm.get('profileName')?.touched && configForm.get('profileName')?.errors?.['required']">
+                                El nombre de perfil es requerido
+                            </div>
+                        </div>
+                        <div class="col-12 text-center" *ngIf="mensajeError!==''">
+                            <small class="error text-danger">{{mensajeError}}.</small>
+                        </div>
+
+            <!-- Botón de Guardar -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-custom" [disabled]="!configForm.valid">
+                    Guardar Cambios
+                </button>
+            </div>
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>

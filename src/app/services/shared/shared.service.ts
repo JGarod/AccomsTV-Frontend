@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { LoginService } from '../auth/login.service';
 import { Router } from '@angular/router';
+import { CanalesInterface } from '../../interfeces/canales/canales.interface';
+import { CanalModel } from '../../models/canales/canales.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +52,22 @@ export class SharedService {
     );
   }
 
-
+  //buscar los canales en el search del header
+  getCanalNombre(nombre: string): Observable<any> {
+    return this.http.get<CanalesInterface>(`${this.apiURL}/channels/search/${nombre}`).pipe(
+      map(response => {
+        const canales = response.canales.map(canal =>
+          new CanalModel(canal.id, canal.nombre, canal.logo)
+        );
+        // Transforma la respuesta a la interfaz Canal
+        return {
+          canales: canales,
+          msg: response.msg
+        };
+      }),
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
 }

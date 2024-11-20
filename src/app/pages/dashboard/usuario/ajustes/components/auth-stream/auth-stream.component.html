@@ -1,1 +1,40 @@
-<p>auth-stream works!</p>
+<div class="container-fluid">
+    <div class="shadow rounded p-3">
+        <h2 class="card-title text-center mb-4">Configuración del stream</h2>
+        <div class="row" *ngIf="!cargando">
+            <form autocomplete="off" class="w-100">
+                <div class="mb-3">
+                    <label for="username" class="form-label text-white">Enlace de transmisión</label>
+                    <input id="username" readonly [value]="enlace" placeholder="Enlace de transmisión"
+                        class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label text-white">Key de la transmisión</label>
+                    <div class="d-flex align-items-center">
+                        <div class="input-group">
+                            <input type="password" readonly class="form-control"
+                                [type]="showPassword ? 'text' : 'password'" [value]="password">
+                            <button type="button" (click)="togglePassword()" class="btn btn-outline-secondary">
+                                <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                            </button>
+                        </div>
+                        <button *ngIf="!copiado" type="button" (click)="copyToClipboard()" class="btn btn-primary ms-2">
+                            Copiar
+                        </button>
+                        <button *ngIf="copiado" type="button" disabled class="btn btn-success ms-2">
+                            ¡Copiado!
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <pre *ngIf="[null, '', undefined].includes(password)" class="text-muted">
+                        En este momento no tienes una clave para transmitir, si deseas una puedes generarla.
+                    </pre>
+                    <button type="button" (click)="generateKey()" class="btn btn-primary">
+                        Generar nueva key
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

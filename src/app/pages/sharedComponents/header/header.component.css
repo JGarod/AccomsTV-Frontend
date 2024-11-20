@@ -58,9 +58,12 @@
         position: relative;
     }
 
+
     .logo {
-        height: 40px;
-        width: auto;
+        width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
     }
 
     .mobile-search-icon {
@@ -86,4 +89,38 @@
     .mobile-only .position-relative {
         position: relative;
     }
+}
+.resultados-lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    border: 1px solid #6c757d;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.resultados-lista li {
+    display: flex;
+    /* Coloca la imagen y el texto en línea */
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.imagen-pequena {
+    width: 24px;
+    /* Tamaño de la imagen */
+    height: 24px;
+    /* Tamaño de la imagen */
+    margin-right: 8px;
+    /* Espacio entre la imagen y el texto */
+    border-radius: 4px;
+    /* Opcional: bordes redondeados */
 }

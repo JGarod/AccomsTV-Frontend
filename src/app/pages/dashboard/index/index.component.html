@@ -29,7 +29,7 @@
             <div class="product-item" [routerLink]="['/tv', item.nombre]">
                 <div class="product-item-content">
                     <div class="mb-3">
-                        <img src="{{item.logo}}" alt="Image" style="border-radius: 8px;" />
+                        <img [src]="item.logo || 'assets/user/profile.jpg'" alt="Image" style="border-radius: 8px;" />
                     </div>
                     <div>
                         <h4 class="product-title">{{item.nombre}}</h4>

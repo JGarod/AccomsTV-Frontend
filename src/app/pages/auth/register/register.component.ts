@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/auth/login.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -27,7 +27,7 @@ export class RegisterComponent {
   ngOnInit(): void {
     // Inicializa el formulario reactivo
     this.registerForm = this.fb.group({
-      nombre: ['', Validators.required], // Requerido
+      nombre: ['', [Validators.required, this.singleWordValidator]], // Requerido
       contrasena: ['', [Validators.required, Validators.minLength(6)]], // Requerido y longitud mínima
       contrasenaDos: ['', [Validators.required, Validators.minLength(6)]], // Requerido y longitud mínima
       correo: ['', [Validators.required, Validators.email]], // Requerido y longitud mínima
@@ -72,5 +72,12 @@ export class RegisterComponent {
     } catch (error) {
 
     }
+  }
+
+  singleWordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const valid = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9_]+$/.test(control.value);
+      return valid ? null : { 'singleWord': { value: control.value } };
+    };
   }
 }

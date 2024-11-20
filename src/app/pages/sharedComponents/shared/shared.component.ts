@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { UserDataExpansiva } from '../../../interfeces/usuario/usuario.interface';
 import { SharedService } from '../../../services/shared/shared.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-shared',
@@ -17,6 +18,7 @@ export class SharedComponent {
 
   public dataUsuario!: UserDataExpansiva | null; // Declaramos la variable con el tipo `UserData`
   public cargadoData: boolean = false;
+  public apiIMG = environment.apiImagenes;
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -39,6 +41,12 @@ export class SharedComponent {
       usuarioObservable.subscribe({
         next: (response: UserDataExpansiva) => {
           this.dataUsuario = response;
+          if (response && response.logo) {
+            response.logo = this.apiIMG + response.logo;
+          }
+          if (response && response.portada) {
+            response.portada = this.apiIMG + response.portada;
+          }
           this.cargadoData = true;
         },
         error: (err) => {

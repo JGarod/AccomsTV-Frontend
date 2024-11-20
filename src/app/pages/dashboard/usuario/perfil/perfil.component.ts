@@ -9,7 +9,8 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 import { ChatSocketsService } from '../../../../services/sockets/chat-sockets.service';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../../../services/auth/login.service';
-import { messageSocketInterface } from '../../../../interfeces/canales/canales.interface';
+import { CanalInterface, messageSocketInterface } from '../../../../interfeces/canales/canales.interface';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-perfil',
@@ -39,6 +40,7 @@ export class PerfilComponent {
     '🎈', '🐶', '🐱', '🌈', '🌟', '✨', '🌹', '🍕', '🍔', '🍣',
     // Continúa con tus 200 emojis...
   ];
+  public apiIMG = environment.apiImagenes;
   constructor(
     private canalesService: CanalesService,
     private route: ActivatedRoute,
@@ -74,8 +76,14 @@ export class PerfilComponent {
   async cargarCanal() {
     try {
       this.canalesService.getCanal(this.nombre).pipe(takeUntil(this.unsubscribe$)).subscribe({
-        next: (response) => {
+        next: (response: CanalInterface) => {
           this.datosCanal = response.canal;
+          if (response && response.canal.logo) {
+            response.canal.logo = this.apiIMG + response.canal.logo;
+          }
+          if (response && response.canal.portada) {
+            response.canal.portada = this.apiIMG + response.canal.portada;
+          }
           this.cargando = true;
           this.cdr.markForCheck();
         },

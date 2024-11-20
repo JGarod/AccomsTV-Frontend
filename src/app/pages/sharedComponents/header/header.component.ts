@@ -4,6 +4,10 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AlertaServiceService } from '../../../services/alertas/alerta-service.service';
 import { LoginService } from '../../../services/auth/login.service';
+import { SharedService } from '../../../services/shared/shared.service';
+import { CanalModel } from '../../../models/canales/canales.model';
+import { CanalesInterface } from '../../../interfeces/canales/canales.interface';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -16,20 +20,33 @@ export class HeaderComponent {
   @Input() usuarioActual!: UserDataExpansiva | null;
   public menuOpen: boolean = false;
   public isSearchVisible = false;
+  public nombreSeleccionado: string = "";
+  public nombreSeleccionadoValidador: string = "";
+  public resultados: CanalModel[] = [];
+  public seleccionoCanal = false;
+  public apiIMG = environment.apiImagenes;
+
   constructor(
     private alertaServiceService: AlertaServiceService,
     private router: Router,
     private loginService: LoginService,
+    private sharedService: SharedService,
   ) {
 
   }
 
-  @HostListener('document:click', ['$event'])
-  clickOutside(event: Event) {
-    if (!(event.target as HTMLElement).closest('.me-3')) {
-      this.menuOpen = false;
-    }
-  }
+  // @HostListener('document:click', ['$event'])
+  // clickOutside(event: Event) {
+  //   const target = event.target as HTMLElement;
+
+  //   // Si no se hace clic en el área del menú
+  //   if (!target.closest('.me-3')) {
+  //     this.menuOpen = false;
+  //   }
+
+  //   // Si no se hace clic en la lista de resultados, cerramos la lista
+ 
+  // }
 
   ngOnInit() {
   }
@@ -65,6 +82,10 @@ export class HeaderComponent {
       this.menuOpen = false;
       console.log('Menu cerrado desde fuera:', this.menuOpen); // Para depuración
     }
+    if (!this.seleccionoCanal && !(event.target as HTMLElement).closest('.clasePrueba')) {
+      console.log('Clic fuera de resultados-lista');
+      this.seleccionoCanal = true;
+    }
   }
 
   irAPerfil() {
@@ -84,4 +105,51 @@ export class HeaderComponent {
     }
 
   }
+
+  manejarKeyup(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const nombre = inputElement.value;
+    this.busquedaCanal(nombre);
+  }
+
+  async busquedaCanal(nombre: string) {
+    this.seleccionoCanal = false;
+    this.nombreSeleccionadoValidador = nombre;
+    if (nombre.length > 3) {
+      if (this.nombreSeleccionado !== this.nombreSeleccionadoValidador) {
+        this.nombreSeleccionado = this.nombreSeleccionadoValidador;
+        console.log(nombre);
+        const canalesObservable = await this.sharedService.getCanalNombre(this.nombreSeleccionadoValidador); // Espera a que se resuelva la promesa
+        canalesObservable.subscribe({
+          next: async (response: CanalesInterface) => {
+            await Promise.all(response.canales.map((canal) => {
+              console.log(canal);
+              if (canal && canal.logo) {
+                canal.logo = this.apiIMG + canal.logo;
+              }
+              if (canal && canal.portada) {
+                canal.portada = this.apiIMG + canal.portada;
+              }
+            }));
+            this.resultados = response.canales;
+          },
+          error: (err) => {
+            this.resultados = [];
+            console.error('Error en la obtención del perfil:', err);
+            // Aquí puedes manejar el error, como mostrar un mensaje al usuario
+          }
+        });
+      }
+    } else {
+      this.resultados = [];
+    }
+  }
+
+  seleccionarCanal(resultado: string) {
+    this.router.navigate(['/tv', resultado]);
+    // Limpia los resultados para cerrar la lista
+    this.seleccionoCanal = true;
+  }
+
+
 }
