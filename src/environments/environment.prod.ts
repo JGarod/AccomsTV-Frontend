@@ -1,7 +1,10 @@
 
-let ip = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
-let imgs = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
-let rtmp = 'rtmp://ec2-52-90-118-173.compute-1.amazonaws.com/live/'
+let ip = 'https://accomz.work.gd'
+let imgs = 'https://accomz.work.gd'
+let rtmp = 'rtmp://accomz.work.gd/live/'
+// let ip = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
+// let imgs = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
+// let rtmp = 'rtmp://ec2-52-90-118-173.compute-1.amazonaws.com/live/'
 // let ip = 'https://3x1c783j-3000.use2.devtunnels.ms'
 export const environment = {
    production: false,
