@@ -32,7 +32,7 @@ export class LoginService {
   // Método ajustado para manejar promesas
   async getItems(): Promise<UserData | null> {
     const datos = await this.localStorageService.getItem('userData');
-    console.log('Datos obtenidos:', datos);
+    // console.log('Datos obtenidos:', datos);
     return datos;
   }
 }

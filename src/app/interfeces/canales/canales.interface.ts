@@ -19,4 +19,5 @@ export interface messageSocketInterface {
     message: string;
     user: string;
     iduser: number;
+    room: string;
 }

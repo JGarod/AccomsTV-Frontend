@@ -37,7 +37,7 @@ export class SharedService {
       // this.router.navigate(['/']); // Redirige si no hay token
       return throwError(() => new Error('No autorizado')); // Lanza un error
     }
-    console.log(token);
+    // console.log(token);
     return this.http.get<UserDataExpansiva>(`${this.apiURL}/auth/perfil`, {
       headers: {
         Authorization: `Bearer ${token}` // Incluye el token en el encabezado

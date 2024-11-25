@@ -14,31 +14,67 @@ interface JoinRoomResponse {
 })
 export class ChatSocketsService {
   private apiURL = environment.apiURLSockets;
-  private socket: Socket;
+  private socket!: Socket;
+  private currentRoom: string | null = null;
+  private connectionStatus = new Subject<boolean>();
+  connectionStatus$ = this.connectionStatus.asObservable();
 
   constructor() {
+    this.socket?.disconnect();
+
     this.socket = io(this.apiURL, {
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000
     });
 
+
     this.socket.on('connect_error', (error) => {
       console.error('Error de conexión:', error);
     });
 
     this.socket.on('connect', () => {
-      console.log('Conectado al servidor de sockets');
+      this.connectionStatus.next(true);
+    });
+
+    this.socket.on('disconnect', () => {
+      this.connectionStatus.next(false);
     });
   }
 
-  joinRoom(room: string): void {
-    this.socket.emit('join-room', room);
+  getCurrentRoom(): string | null {
+    return this.currentRoom;
   }
 
-  leaveRoom(room: string): void {
-    this.socket.emit('leave-room', room);
+
+  joinRoom(roomName: string) {
+    // Si ya estás en la misma sala, no hagas nada
+    if (this.currentRoom === roomName) {
+      console.log('Ya estás en esta sala');
+      return;
+    }
+
+    console.log('Intentando unirse a sala:', roomName);
+    console.log('Sala actual:', this.currentRoom);
+
+    // Emitir evento para unirse a la nueva sala
+    this.socket.emit('join-room', roomName);
+
+    // Actualizar sala actual
+    this.currentRoom = roomName;
   }
+
+
+  leaveRoom(room: string): void {
+    console.log('Intentando salir de sala:', room);
+
+    // Solo emitir leave-room si estás en esa sala
+    if (this.currentRoom === room) {
+      this.socket.emit('leave-room', room);
+      this.currentRoom = null;
+    }
+  }
+
 
   sendMessage(room: string, message: string, user: string, iduser: string): void {
     this.socket.emit('chat-message', { room, message, user, iduser });
@@ -47,6 +83,7 @@ export class ChatSocketsService {
     return new Observable<messageSocketInterface>(observer => {
       this.socket.on('chat-message', (data: messageSocketInterface) => { // Cambia 'msg' a 'data'
         observer.next(data); // Envía el objeto completo
+        console.log('data', data);
       });
 
       // Asegúrate de manejar la desuscripción para evitar fugas de memoria

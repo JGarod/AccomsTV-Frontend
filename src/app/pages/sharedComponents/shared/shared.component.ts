@@ -6,6 +6,7 @@ import { UserDataExpansiva } from '../../../interfeces/usuario/usuario.interface
 import { SharedService } from '../../../services/shared/shared.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
+import { LoginService } from '../../../services/auth/login.service';
 
 @Component({
   selector: 'app-shared',
@@ -19,7 +20,10 @@ export class SharedComponent {
   public dataUsuario!: UserDataExpansiva | null; // Declaramos la variable con el tipo `UserData`
   public cargadoData: boolean = false;
   public apiIMG = environment.apiImagenes;
-  constructor(private sharedService: SharedService) { }
+  constructor(
+    private sharedService: SharedService,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
 
@@ -53,6 +57,8 @@ export class SharedComponent {
           this.dataUsuario = null;
           this.cargadoData = true;
           console.error('Error en la obtención del perfil:', err);
+          this.loginService.eliminarLocalStorage();
+
           // Aquí puedes manejar el error, como mostrar un mensaje al usuario
         }
       });

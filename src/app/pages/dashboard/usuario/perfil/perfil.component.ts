@@ -27,7 +27,7 @@ export class PerfilComponent {
   public chatVisible: boolean = true;
   public isLoginUser: boolean = false;
   public isMobile: boolean = false; // Controla si es móvil
-  public minimoMovil = 360;
+  public minimoMovil = 400;
   public isFocusedChat: boolean = false;
   public messages: messageSocketInterface[] = [];
   public message: string = '';
@@ -49,19 +49,30 @@ export class PerfilComponent {
     private cdr: ChangeDetectorRef,
     private loginService: LoginService,
   ) {
+
     // Constructor donde se puede inicializar el formulario si es necesario
   }
 
   ngOnInit(): void {
     this.isLogin();
     this.route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
-      this.nombre = params.get('nombre') || '';
-      this.cargarCanal();
-      this.isMobile = this.deviceService.isMobile;
-      this.cambiarChatMobile();
-      this.cargadoSockets();
-    });
+      const newNombre = params.get('nombre') || '';
 
+      // Limpiar mensajes y salir de la sala anterior solo si cambia el nombre
+      if (this.nombre !== newNombre) {
+        this.messages = []; // Reinicia los mensajes
+        if (this.nombre) {
+          this.chatSocketsService.leaveRoom(this.nombre);
+        }
+
+        // Configurar nueva sala
+        this.nombre = newNombre;
+        this.cargarCanal();
+        this.cargadoSockets();
+      }
+    });
+    this.updateLayout();
+    this.cdr.markForCheck();
     this.deviceService.deviceChange$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
@@ -89,6 +100,7 @@ export class PerfilComponent {
         },
         error: (err) => {
           console.error('Error en la obtención del perfil:', err);
+          this.loginService.eliminarLocalStorage();
           this.cdr.markForCheck();
         }
       });
@@ -150,29 +162,42 @@ export class PerfilComponent {
       this.message = '';
       this.cdr.markForCheck();
     } else {
-
+      // Añadir retroalimentación al usuario si falla el envío
     }
   }
 
 
   cargadoSockets() {
     this.chatSocketsService.joinRoom(this.nombre);
-    this.chatSocketsService.receiveMessages().pipe(takeUntil(this.unsubscribe$)).subscribe((message: messageSocketInterface) => {
-      this.messages.push(message);
-      this.cdr.markForCheck();
-    });
+    this.chatSocketsService.receiveMessages()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((message: messageSocketInterface) => {
+        this.messages.push(message);
+        this.cdr.markForCheck();
+      });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
+    // Asegurarse de salir de la sala y limpiar subscripciones
+    if (this.nombre) {
+      this.chatSocketsService.leaveRoom(this.nombre);
+    }
+
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
+
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    this.chatSocketsService.leaveRoom(this.nombre);
   }
 
   async isLogin() {
+    console.log('ENTRO');
     let data = await this.loginService.getItems(); // Espera a que se resuelva la promesa
     if (data && ![null, undefined, ''].includes(data?.idUsuario) && ![null, undefined, ''].includes(data?.nombreUsuario) && ![null, undefined, ''].includes(data?.token)) {
       this.isLoginUser = true;
+    } else {
+      this.isLoginUser = false;
     }
   }
 

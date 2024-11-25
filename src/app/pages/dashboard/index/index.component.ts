@@ -44,6 +44,7 @@ export class IndexComponent {
 
   constructor(
     private canalesService: CanalesService,
+    private loginService: LoginService,
   ) {
     // Constructor donde se puede inicializar el formulario si es necesario
   }
@@ -78,6 +79,7 @@ export class IndexComponent {
 
         },
         error: (err) => {
+          this.loginService.eliminarLocalStorage();
           console.error('Error en la obtención del perfil:', err);
           // Aquí puedes manejar el error, como mostrar un mensaje al usuario
         }

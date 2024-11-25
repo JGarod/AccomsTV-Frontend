@@ -20,6 +20,10 @@ export const routes: Routes = [
       {
         path: 'tv/:nombre',
         loadComponent: () => import('./pages/dashboard/usuario/perfil/perfil.component').then(m => m.PerfilComponent),
+        data: {
+          // Puedes agregar datos de ruta si lo necesitas
+          shouldReload: true
+        }
       },
       {
         path: 'config', component: AjustesComponent, canActivate: [AuthGuard],

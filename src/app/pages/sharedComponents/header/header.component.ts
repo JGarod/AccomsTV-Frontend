@@ -8,6 +8,7 @@ import { SharedService } from '../../../services/shared/shared.service';
 import { CanalModel } from '../../../models/canales/canales.model';
 import { CanalesInterface } from '../../../interfeces/canales/canales.interface';
 import { environment } from '../../../../environments/environment';
+import { ChatSocketsService } from '../../../services/sockets/chat-sockets.service';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +32,7 @@ export class HeaderComponent {
     private router: Router,
     private loginService: LoginService,
     private sharedService: SharedService,
+    private chatSocketsService: ChatSocketsService
   ) {
 
   }
@@ -136,6 +138,8 @@ export class HeaderComponent {
           error: (err) => {
             this.resultados = [];
             console.error('Error en la obtención del perfil:', err);
+            this.loginService.eliminarLocalStorage();
+
             // Aquí puedes manejar el error, como mostrar un mensaje al usuario
           }
         });

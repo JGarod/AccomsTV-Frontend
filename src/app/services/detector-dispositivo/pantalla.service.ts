@@ -12,7 +12,7 @@ export class PantallaService {
 
   public isMobile: boolean = false; // Propiedad para saber si es móvil
   private currentDevice: string = 'desktop'; // Valor por defecto
-  private readonly thresholdWidth = 360; // Umbral para considerar móvil
+  private readonly thresholdWidth = 400; // Umbral para considerar móvil
 
   constructor(private ngZone: NgZone, @Inject(PLATFORM_ID) private platformId: Object) {
     this.detectDevice();
