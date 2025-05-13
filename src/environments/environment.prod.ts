@@ -23,8 +23,8 @@
 // };
 
 
-let ip = 'https://34.60.233.227'
-let imgs = 'https://34.60.233.227'
+let ip = 'http://34.60.233.227'
+let imgs = 'http://34.60.233.227'
 let rtmp = 'rtmp://34.60.233.227/live/'
 // // let ip = 'https://3x1c783j-3000.use2.devtunnels.ms'
 // export const environment = {
