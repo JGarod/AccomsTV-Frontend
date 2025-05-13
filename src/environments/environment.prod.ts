@@ -2,8 +2,8 @@
 // let ip = 'https://accomstv-production.up.railway.app'
 // let imgs = 'https://accomstv-production.up.railway.app'
 // let rtmp = 'rtmp://accomstv-production.up.railway.app/live/'
-let ip = 'https://34.60.233.227.sslip.io'
-let imgs = 'https://34.60.233.227.sslip.io'
+let ip = 'http://34.60.233.227.sslip.io'
+let imgs = 'http://34.60.233.227.sslip.io'
 let rtmp = 'rtmp://34.60.233.227/live/'
 // let ipvideo = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
 
