@@ -1,19 +1,21 @@
+/* Mantén tus estilos actuales */
 video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* O 'contain' si quieres mantener la relación de aspecto */
-    /* background-color: #F5CB43; */
-    /* Para verificar el tamaño */
-}
-.container {
-    text-align: center;
-    /* background-color: white;  */
 }
 
+.container {
+    text-align: center;
+}
+
+/* Modifica el estilo de .logo para hacerlo más responsive */
 .logo {
-    width: 200px;
-    height: 200px;
+    width: clamp(100px, 30%, 200px);
+        /* Ajusta el tamaño de forma responsive */
+        height: auto;
+        aspect-ratio: 1/1;
+        /* Mantiene la proporción */
     background-color: #333;
     border-radius: 50%;
     margin: 0 auto 20px;
@@ -22,24 +24,49 @@ video {
     align-items: center;
     color: white;
     font-size: 24px;
+    object-fit: cover;
 }
 
+/* Modifica el estilo de .message para hacerlo responsive */
 .message {
-    font-size: 44px;
+    font-size: clamp(20px, 5vw, 44px);
+        /* Tamaño de fuente responsive */
     color: white;
     margin-bottom: 10px;
+    text-align: center;
+        width: 100%;
 }
 
+/* Modifica el estilo de .sub-message para hacerlo responsive */
 .sub-message {
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 18px);
+        /* Tamaño de fuente responsive */
     color: white;
+    text-align: center;
+        width: 100%;
 }
 
+/* Modifica el estilo de .portada para asegurar que cubra todo el espacio */
 .portada {
     width: 100%;
     height: 100%;
+    padding: 5px;
+        /* display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+            padding: 20px;
+            box-sizing: border-box; */
 }
 
 .videoOffline {
     display: none;
+}
+/* Añade estos nuevos estilos para mejorar la estructura */
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
 }

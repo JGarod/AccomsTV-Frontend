@@ -10,16 +10,17 @@ import { AlertaServiceService } from '../../../services/alertas/alerta-service.s
 import { CarouselModule } from 'primeng/carousel';
 import { CanalesInterface } from '../../../interfeces/canales/canales.interface';
 import { environment } from '../../../../environments/environment';
+import { CarruselComponent } from '../carrusel/carrusel.component';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, RouterModule, SweetAlert2Module, CarouselModule],
+  imports: [CommonModule, RouterModule, SweetAlert2Module, CarruselComponent],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
-  public placeholderStreams: any = []
+
   // public usuarioActual!: Usuario;
   public sidebarOpened = false;
   public responsiveOptions = [
@@ -39,7 +40,7 @@ export class IndexComponent {
       numScroll: 1
     }
   ];
-  public apiIMG = environment.apiImagenes;
+
   // Ejemplo de datos para las transmisiones
 
   constructor(
@@ -51,7 +52,7 @@ export class IndexComponent {
 
   ngOnInit(): void {
     // PRUEBA
-    this.cargado();
+
   }
 
   toggleSidebar() {
@@ -60,33 +61,5 @@ export class IndexComponent {
 
 
 
-  async cargado() {
-    try {
-      const canalesObservable = await this.canalesService.getCanales(); // Espera a que se resuelva la promesa
-      canalesObservable.subscribe({
-        next: async (response: CanalesInterface) => {
-          await Promise.all(response.canales.map((canal) => {
-            console.log(canal);
-            if (canal && canal.logo) {
-              canal.logo = this.apiIMG + canal.logo;
-            }
-            if (canal && canal.portada) {
-              canal.portada = this.apiIMG + canal.portada;
-            }
-          }));
-          console.log('-----', response);
-          this.placeholderStreams = response.canales;
 
-        },
-        error: (err) => {
-          this.loginService.eliminarLocalStorage();
-          console.error('Error en la obtención del perfil:', err);
-          // Aquí puedes manejar el error, como mostrar un mensaje al usuario
-        }
-      });
-    } catch (error) {
-      console.error('Error al obtener los canales:', error);
-      // Maneja cualquier error al resolver la promesa
-    }
-  }
 }

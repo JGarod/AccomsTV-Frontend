@@ -13,7 +13,7 @@
     margin: 0px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 900px) {
     .bg-dark {
         flex: 0 0 20%;
         width: 100%;
@@ -64,7 +64,7 @@
 }
 
 /* Ajustes para pantallas grandes (escritorio) */
-@media (min-width: 401px) {
+@media (min-width: 901px) {
     .bg-dark {
         flex: 0 0 80%;
     }

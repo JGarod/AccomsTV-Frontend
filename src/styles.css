@@ -1,12 +1,13 @@
+
 .bodyDashboard {
-    background-color: #031716 !important;
+    background-color: #141414 !important;
         /* background-color: #15181f !important; */
 
 }
 
 
 .secondBodyDashboard {
-    background-color: #032F30 !important;
+    background-color: #2A2A2A !important;
         /* background-color: #2C2C3A !important; */
 
 }
@@ -46,7 +47,7 @@
 }
 
 .custom-swal {
-    background-color: #031716 !important;
+    background-color: #141414 !important;
     /* Color de fondo de la alerta */
     color: white !important;
     /* Color del texto */
@@ -85,12 +86,12 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #031716;
+    background: #141414;
     /* Color del fondo de la barra de desplazamiento */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #032F30;
+    background: #2A2A2A;
     /* Color del 'pulgar' de la barra de desplazamiento */
     border-radius: 10px;
     /* Bordes redondeados */
@@ -103,7 +104,7 @@
 }
 
 .btn-custom-two {
-    background-color: #032F30 !important;
+    background-color: #2A2A2A !important;
     /* Fondo personalizado */
     color: white !important;
     /* Texto blanco */
@@ -112,7 +113,7 @@
 }
 
 .btn-custom-two:hover {
-    background-color: #031716 !important;
+    background-color: #141414 !important;
     /* Cambia el color al hacer hover */
     color: white !important;
 }
@@ -126,8 +127,8 @@
 /* Opcional: Aplicar fondo blanco y bordes para las tarjetas */
 .secondBodyDashboard .card,
 .secondBodyDashboard .list-group-item {
-    background-color: #031716 !important;
-        border: 1px solid #031716;
+    background-color: #141414 !important;
+        border: 1px solid #141414;
     color: white !important;
 }
 

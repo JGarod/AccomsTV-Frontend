@@ -3,7 +3,9 @@ export class CanalModel {
         public id: number,
         public nombre: string,
         public logo: string | null,
-        public portada?: string) { }
+        public portada?: string,
+        public video?: string | null,
+    ) { }
 
 }
 export class Usuario {

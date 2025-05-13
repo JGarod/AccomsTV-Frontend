@@ -9,3 +9,47 @@
 .bi:hover {
     color: #F5CB43;
 }
+/* Estilos para el componente footer.component.css */
+:host {
+    display: block;
+    width: 100%;
+    background-color: #18181B;
+    position: relative;
+    /* Para asegurar que esté en el flujo del documento */
+}
+
+.secondBodyDashboard {
+    background-color: #18181B;
+    width: 100%;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 767px) {
+    .app-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding-bottom: 10px;
+        /* Menor espacio en móviles */
+    }
+
+    /* Para evitar desbordamientos en el footer en móviles */
+    .footer-wrapper {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+/* Para dispositivos en landscape */
+@media (orientation: landscape) and (max-height: 500px) {
+    .app-container {
+        min-height: 100vh;
+    }
+
+    /* Esto asegura que en landscape con poca altura, el contenido sea scrollable */
+    .main-content {
+        overflow-y: auto;
+    }
+}

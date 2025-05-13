@@ -7,4 +7,13 @@ export class UsuarioKey {
 
 }
 
+export class changePassword {
+    constructor(
+        public passwordActual: string,
+        public password: string,
+        public passwordDos: string,
+    ) { }
+
+}
+
 

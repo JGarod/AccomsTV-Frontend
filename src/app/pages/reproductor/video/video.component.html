@@ -2,14 +2,14 @@
     <div [class.videoOffline]="!isCanalOnline" class="video-wrapper">
         <video controls #video autoplay class="video"></video>
     </div>
-        <div *ngIf="!isCanalOnline">
-            <div class="portada" *ngIf="[null,'',undefined].includes(rdatosCanal.portada)">
-                <img class="logo" [src]="rdatosCanal.logo ? rdatosCanal.logo : 'assets/user/profile.jpg'" />
-                <div class="message">En este momento {{rdatosCanal.nombre}} está offline</div>
-                <div class="sub-message">Vuelve pronto</div>
-            </div>
-            <div *ngIf="rdatosCanal.portada">
-                <img class="portada" [src]="rdatosCanal.portada" />
-            </div>
+    <div *ngIf="!isCanalOnline" class="offline-container">
+        <div class="portada" *ngIf="[null,'',undefined].includes(rdatosCanal.portada)">
+            <img class="logo" [src]="rdatosCanal.logo ? rdatosCanal.logo : 'assets/user/profile.jpg'" />
+            <div class="message">En este momento {{rdatosCanal.nombre}} está offline</div>
+            <div class="sub-message">Vuelve pronto</div>
+        </div>
+        <div *ngIf="rdatosCanal.portada" class="portada-container">
+            <img class="portada" [src]="rdatosCanal.portada" />
+        </div>
         </div>
         </div>

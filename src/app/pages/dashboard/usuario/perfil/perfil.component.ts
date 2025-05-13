@@ -27,7 +27,7 @@ export class PerfilComponent {
   public chatVisible: boolean = true;
   public isLoginUser: boolean = false;
   public isMobile: boolean = false; // Controla si es móvil
-  public minimoMovil = 400;
+  public minimoMovil = 900;
   public isFocusedChat: boolean = false;
   public messages: messageSocketInterface[] = [];
   public message: string = '';
@@ -125,7 +125,8 @@ export class PerfilComponent {
     const height = window.innerHeight;
 
     // Define el límite para considerar que es mobile
-    this.isMobile = (width <= this.minimoMovil) || (width > this.minimoMovil && height < width);
+    this.isMobile = (width <= this.minimoMovil);
+    // this.isMobile = (width <= this.minimoMovil) || height > width;
     this.cambiarChatMobile();
 
   }

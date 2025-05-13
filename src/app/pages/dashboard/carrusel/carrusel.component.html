@@ -1,0 +1,83 @@
+<!-- VISTA ESCRITORIO -->
+<div class="carrusel-container desktop-view mt-3">
+    <button (click)="prev()" class="arrow left">&lt;</button>
+
+    <div class="carrusel-items">
+        <div *ngFor="let item of getVisibleItems(); let i = index" [ngClass]="{'main': i === 1, 'side': i !== 1}"
+            class="item">
+            <div class="stream-card" [routerLink]="['/tv', item.nombre]">
+                <span class="live-badge">EN VIVO</span>
+
+                <div class="thumbnail">
+                    <ng-container *ngIf="item.video; else videoNoDisponible">
+                        <video #videoPlayer [muted]="true" loop playsinline preload="metadata"
+                            [attr.data-index]="i"></video>
+                    </ng-container>
+
+                    <ng-template #videoNoDisponible>
+                        <p class="video-not-available">Video no disponible</p>
+                    </ng-template>
+                </div>
+
+                <div class="stream-info">
+                    <h4>{{ item.nombre || 'Canal X' }}</h4>
+                    <p class="stream-title">{{ item.titulo || 'Sin título' }}</p>
+                    <p>{{ item.viewers || '0' }} espectadores</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button (click)="next()" class="arrow right">&gt;</button>
+</div>
+
+<!-- VISTA MÓVIL -->
+<div class="mobile-view">
+    <div *ngIf="placeholderStreams.length > 0">
+        <!-- Canal destacado -->
+    <!-- Canal destacado -->
+    <div class="featured-card">
+        <div class="stream-card">
+            <span class="live-badge">EN VIVO</span>
+    
+            <div class="thumbnail">
+                <ng-container *ngIf="placeholderStreams[0].video; else noVideoFeatured">
+                    <video autoplay [muted]="false" loop playsinline preload="metadata"
+                        [src]="placeholderStreams[0].video"></video>
+                </ng-container>
+                <ng-template #noVideoFeatured>
+                    <p class="video-not-available">Video no disponible</p>
+                </ng-template>
+            </div>
+    
+            <div class="stream-info">
+                <h4 [routerLink]="['/tv', placeholderStreams[0].nombre]">{{ placeholderStreams[0].nombre || 'Canal X' }}</h4>
+                <p class="stream-title">{{ placeholderStreams[0].titulo || 'Sin título' }}</p>
+                <p>{{ placeholderStreams[0].viewers || '0' }} espectadores</p>        </div>
+        </div>
+    </div>
+    
+    <!-- Canales sugeridos -->
+    <div class="suggested-section">
+        <h5>Canales sugeridos</h5>
+        <div class="suggested-list">
+            <div *ngFor="let canal of placeholderStreams.slice(1, 6)" class="suggested-card">
+                <div class="thumbnail">
+                    <ng-container *ngIf="canal.video; else noSuggestedVideo">
+                        <video autoplay muted loop playsinline preload="metadata" [src]="placeholderStreams[0].video"></video>
+
+                    </ng-container>
+                    <ng-template #noSuggestedVideo>
+                        <p class="video-not-available">Sin video</p>
+                    </ng-template>
+                </div>
+                <div class="stream-info">
+                    <h4 [routerLink]="['/tv', canal.nombre]">{{ canal.nombre || 'Canal X' }}</h4>
+                    <p class="stream-title">{{ canal.titulo || 'Sin título' }}</p>            </div>
+            </div>
+        </div>
+    </div>
+  
+    </div>
+</div>
+  

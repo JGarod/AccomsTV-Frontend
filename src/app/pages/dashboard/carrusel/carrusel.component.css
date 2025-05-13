@@ -1,0 +1,214 @@
+.carrusel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.arrow {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+.carrusel-items {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.item {
+    flex: 1;
+    opacity: 0.4;
+    transition: transform 0.3s, opacity 0.3s;
+    text-align: center;
+
+    &.main {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+.video-not-available {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* Asegura que tome todo el alto del contenedor */
+    width: 100%;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    background-color: #000;
+    /* Opcional: para que se note mejor */
+}
+.stream-card {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    background-color: #18181b;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    color: white;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .live-badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background-color: red;
+        color: white;
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+        z-index: 2;
+    }
+/* 
+    .thumbnail {
+        width: 100%;
+        height: 120px;
+        position: relative;
+        background: #2e2e33;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            background-color: #3a3a3d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+    } */
+
+        .thumbnail {
+            width: 100%;
+            height: 120px;
+            position: relative;
+            background: #2e2e33;
+    
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border: none;     }
+            }
+
+    .stream-info {
+        padding: 0.5rem;
+
+        h4 {
+            margin: 0;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        p {
+            margin: 4px 0 0;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+    }
+}
+
+/* Oculta/esconde vistas según el tamaño */
+.desktop-view {
+    display: flex;
+}
+
+.mobile-view {
+    display: none;
+}
+
+/* Mostrar solo en móvil */
+@media (max-width: 768px) {
+    .desktop-view {
+        display: none !important;
+    }
+
+    .mobile-view {
+        display: block;
+        padding: 1rem;
+    }
+
+    .featured-card .stream-card {
+        width: 100%;
+        height: auto;
+        background-color: #18181b;
+    }
+
+    .featured-card .thumbnail {
+        height: 180px;
+    }
+
+    .suggested-section {
+        margin-top: 1rem;
+    }
+
+    .suggested-section h5 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+
+    .suggested-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 0.75rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .suggested-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .suggested-card {
+        flex: 0 0 130px;
+        background-color: #2a2a2e;
+        border-radius: 8px;
+        overflow: hidden;
+        color: white;
+        text-align: left;
+    }
+
+    .suggested-card .thumbnail {
+        width: 100%;
+        height: 80px;
+        background: #333;
+    }
+
+    .suggested-card video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .suggested-card .stream-info {
+        padding: 0.4rem;
+    }
+
+    .suggested-card h4 {
+        font-size: 0.85rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+}
