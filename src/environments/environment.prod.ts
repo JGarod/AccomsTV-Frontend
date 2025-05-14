@@ -2,8 +2,8 @@
 // let ip = 'https://accomstv-production.up.railway.app'
 // let imgs = 'https://accomstv-production.up.railway.app'
 // let rtmp = 'rtmp://accomstv-production.up.railway.app/live/'
-let ip = 'http://accomz.duckdns.org'
-let imgs = 'http://accomz.duckdns.org'
+let ip = 'https://accomz.duckdns.org'
+let imgs = 'https://accomz.duckdns.org'
 let rtmp = 'rtmp://accomz.duckdns.org/live/'
 // let ipvideo = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
 
