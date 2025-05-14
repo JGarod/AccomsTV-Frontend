@@ -1,7 +1,7 @@
 
 let ip = 'http://192.168.20.133'
 let imgs = 'http://192.168.20.133'
-let rtmp = 'rtmp://8.tcp.ngrok.io:10582/live/'
+let rtmp = 'rtmp://192.168.20.133/live/'
 // // let ip = 'https://3x1c783j-3000.use2.devtunnels.ms'
 // export const environment = {
 //   production: false,
