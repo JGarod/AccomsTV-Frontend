@@ -2,9 +2,9 @@
 // let ip = 'https://accomstv-production.up.railway.app'
 // let imgs = 'https://accomstv-production.up.railway.app'
 // let rtmp = 'rtmp://accomstv-production.up.railway.app/live/'
-let ip = 'https://1c01-34-60-233-227.ngrok-free.app'
-let imgs = 'https://7144-34-60-233-227.ngrok-free.app'
-let rtmp = 'rtmp://8.tcp.ngrok.io:10582/live/'
+let ip = 'https://accomz.zapto.org'
+let imgs = 'https://accomz.zapto.org'
+let rtmp = 'rtmp://accomz.zapto.org/live/'
 // let ipvideo = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
 
 // let ip = 'https://ec2-52-90-118-173.compute-1.amazonaws.com'
